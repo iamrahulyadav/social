@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title><?php echo $so['title'];?></title>
+      <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+      <meta name="title" content="<?php echo $so['title'];?>">
+      <meta name="description" content="<?php echo $so['description'];?>">
+      <meta name="keysords" content="<?php echo $so['keysords'];?>">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <?php if ($so['page'] == 'maintenance') { ?>
+      <meta name="robots" content="noindex">
+      <meta name="googlebot" content="noindex">
+      <?php } ?>
+      <?php if ($so['page'] == 'watch_movie') { ?>
+      <meta property="og:title" content="<?php echo $so['movie']['name']; ?>" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="<?php echo $so['movie']['url']; ?>" />
+      <meta property="og:image" content="<?php echo $so['movie']['cover']; ?>" />
+      <meta property="og:image:secure_url" content="<?php echo $so['movie']['cover']; ?>" />
+      <meta property="og:description" content="<?php echo $so['movie']['description']; ?>" />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="<?php echo $so['movie']['name']; ?>" />
+      <meta name="twitter:description" content="<?php echo $so['movie']['description']; ?>" />
+      <meta name="twitter:image" content="<?php echo $so['movie']['cover']; ?>" />
+      <?php } ?>
+      <?php if ($so['page'] == 'page' && !empty($so['page_profile'])) { ?>
+      <meta property="og:title" content="<?php echo $so['page_profile']['page_name']; ?>" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="<?php echo $so['page_profile']['url']; ?>" />
+      <meta property="og:image" content="<?php echo $so['page_profile']['avatar']; ?>" />
+      <meta property="og:image:secure_url" content="<?php echo $so['page_profile']['avatar']; ?>" />
+      <meta property="og:description" content="<?php echo $so['page_profile']['page_description']; ?>" />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="<?php echo $so['page_profile']['page_name']; ?>" />
+      <meta name="twitter:description" content="<?php echo $so['page_profile']['page_description']; ?>" />
+      <meta name="twitter:image" content="<?php echo $so['page_profile']['avatar']; ?>" />
+      <?php } ?>
+      <?php if ($so['page'] == 'group' && !empty($so['group_profile'])) { ?>
+      <meta property="og:title" content="<?php echo $so['group_profile']['group_name']; ?>" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="<?php echo $so['group_profile']['url']; ?>" />
+      <meta property="og:image" content="<?php echo $so['group_profile']['avatar']; ?>" />
+      <meta property="og:image:secure_url" content="<?php echo $so['group_profile']['avatar']; ?>" />
+      <meta property="og:description" content="<?php echo $so['group_profile']['about']; ?>" />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="<?php echo $so['group_profile']['group_name']; ?>" />
+      <meta name="twitter:description" content="<?php echo $so['group_profile']['about']; ?>" />
+      <meta name="twitter:image" content="<?php echo $so['group_profile']['avatar']; ?>" />
+      <?php } ?>
+      <?php if ($so['page'] == 'game' && !empty($so['game'])) { ?>
+      <meta property="og:title" content="<?php echo $so['game']['game_name']; ?>" />
+      <meta property="og:type" content="game" />
+      <meta property="og:url" content="<?php echo $so['game']['game_link']; ?>" />
+      <meta property="og:image" content="<?php echo $so['game']['game_avatar']; ?>" />
+      <meta property="og:image:secure_url" content="<?php echo $so['game']['game_avatar']; ?>" />
+      <meta property="og:description" content="<?php echo $so['game']['game_name']; ?>" />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="<?php echo $so['game']['game_name']; ?>" />
+      <meta name="twitter:description" content="<?php echo $so['game']['game_name']; ?>" />
+      <meta name="twitter:image" content="<?php echo $so['game']['game_avatar']; ?>" />
+      <?php } ?>
+      <?php if ($so['page'] == 'welcome') { ?>
+      <meta property="og:title" content="<?php echo $so['title'];?>" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="<?php echo $so['config']['site_url'];?>" />
+      <meta property="og:image" content="<?php echo $so['config']['theme_url'];?>/img/og.jpg" />
+      <meta property="og:image:secure_url" content="<?php echo $so['config']['theme_url'];?>/img/og.jpg" />
+      <meta property="og:description" content="<?php echo $so['description'];?>" />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="<?php echo $so['title'];?>" />
+      <meta name="twitter:description" content="<?php echo $so['description'];?>" />
+      <meta name="twitter:image" content="<?php echo $so['config']['theme_url'];?>/img/og.jpg" />
+      <?php } ?>
+      <?php 
+      if (!empty($so['story']['postFile'])) { 
+          echo So_LoadPage('header/og-meta');
+      } 
+      if (!empty($so['story']['postSticker'])) { 
+          echo So_LoadPage('header/og-meta-5');
+      } 
+      if (!empty($so['story']['postLink'])) { 
+          echo So_LoadPage('header/og-meta-2');
+      }
+
+      if (!empty($so['story']['product_id'])) { 
+          echo So_LoadPage('header/og-meta-4');
+          // print_r($so['story']['product']);
+          // exit();
+      } 
+      if ($so['page'] == 'timeline') { ?>
+      <meta property="og:type" content="article" />
+      <meta property="og:image" content="<?php echo $so['user_profile']['avatar']?>" />
+      <meta property="og:image:secure_url" content="<?php echo $so['user_profile']['avatar'];?>" />
+      <meta property="og:description" content="<?php echo $so['description'];?>" />
+      <meta property="og:title" content="<?php echo $so['title'];?>" />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="<?php echo $so['title'];?>" />
+      <meta name="twitter:description" content="<?php echo $so['description'];?>" />
+      <meta name="twitter:image" content="<?php echo $so['user_profile']['avatar']; ?>" />
+      <?php if ($so['user_profile']['share_my_data'] == 0) { ?>
+      <meta name="robots" content="noindex,nofollow">
+      <meta name="googlebot" content="noindex">
+      <?php } ?>
+      <?php } ?>
+      <?php if ($so['page'] == 'read-blog') { ?>
+      <meta property="og:type" content="article" />
+      <meta property="og:image" content="<?php echo $so['article']['thumbnail']?>" />
+      <meta property="og:image:secure_url" content="<?php echo $so['article']['thumbnail']?>" />
+      <meta property="og:description" content="<?php echo $so['article']['description'];?>" />
+      <meta property="og:title" content="<?php echo $so['article']['title'];?>" />
+      <meta property="og:url" content="<?php echo $so['article']['url'];?>" />
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:title" content="<?php echo $so['article']['title'];?>" />
+      <meta name="twitter:description" content="<?php echo $so['article']['description'];?>" />
+      <meta name="twitter:image" content="<?php echo $so['article']['thumbnail']; ?>" />
+      <?php } ?>
+      <link rel="shortcut icon" type="image/png" href="<?php echo $so['config']['theme_url'];?>/img/icon.png"/>
+      <link rel="stylesheet" href="<?php echo $so['config']['theme_url'];?>/stylesheet/general-style-plugins.css">
+      <!-- <?php if($so['language_type'] == 'rtl' && $so['page'] != 'welcome') { ?>
+      <link rel="stylesheet" href="<?php echo $so['config']['theme_url'];?>/stylesheet/bootsrap-rtl.min.css<?php echo $so['update_cache']; ?>">
+      <link rel="stylesheet" href="<?php echo $so['config']['theme_url'];?>/stylesheet/style_rtl.css<?php echo $so['update_cache']; ?>">
+      <?php } ?> -->
+      <?php if ($so['page'] == 'create_blog' || $so['page'] == 'edit-blog') { ?>
+      <script src="<?php echo $so['config']['theme_url'];?>/javascript/tinymce/js/tinymce/tinymce.min.js"></script>
+      <?php } ?>
+    
+      <?php if ($so['page'] == 'welcome') { ?>
+      <link rel="stylesheet" href="<?php echo $so['config']['theme_url'];?>/stylesheet/welcome.css">
+      <?php } else { ?>
+      <script src="//media.twiliocdn.com/sdk/js/video/v1/twilio-video.min.js"></script>
+      <link rel="stylesheet" href="<?php echo $so['config']['theme_url'];?>/stylesheet/style.css">
+      <?php } ?>
+      <link rel="stylesheet" href="<?php echo $so['config']['theme_url'];?>/stylesheet/font-awesome-4.7.0/css/font-awesome.min.css">
+	  
+	  <?php if ($so['page'] == 'messages') { ?>
+	  <link href="https://fonts.googleapis.com/css?family=Krub" rel="stylesheet">
+	  <?php } ?>
+    
+     <?php if ($so['page'] == 'welcome' && $so['language_type'] == 'rtl') { ?>
+      <link rel="stylesheet" href="<?php echo $so['config']['theme_url'];?>/stylesheet/welcome_rtl.css<?php echo $so['update_cache']; ?>">
+      <?php } ?>
+
+      <script src="<?php echo $so['config']['theme_url'];?>/javascript/jquery-3.1.1.min.js"></script>
+
+      <?php if ($so['page'] == 'ads'): ?>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+      <?php endif; ?>
+
+      <?php if ($so['page'] == 'forum') { ?>
+        <script src="<?php echo $so['config']['theme_url'];?>/javascript/forum/script.master.js"></script>
+        <script src="<?php echo $so['config']['theme_url'];?>/javascript/forum/forum.ajax.js"></script>
+      <?php } ?>
+
+      <?php if ($so['page'] == 'movies' || $so['page'] == 'watch_movie') { ?>
+        <link rel="stylesheet" href="<?php echo $so['config']['theme_url'];?>/stylesheet/movies/style.movies.css<?php echo $so['update_cache']; ?>" />
+      <?php } ?>
+      
+      <?php if (isset($so['bbcodeditor']) && $so['bbcodeditor']):?>
+      <!-- <script src="<?php //echo $so['config']['theme_url'];?>/javascript/bbcode/jquery.bbcode.js"></script>
+      <link rel="stylesheet" href="<?php //echo $so['config']['theme_url'];?>/javascript/bbcode/jquery.bbcode.css" media="all"> -->
+      <?php endif ?>
+      <!-- <?php //if ($so['config']['checkout_payment'] == 'yes') { ?>
+        <script type="text/javascript" src="https://www.2checkout.com/checkout/api/2co.min.js"></script>
+      <?php //} ?> -->
+      <link rel="stylesheet" href="<?php echo $so['config']['theme_url'];?>/player/fluidplayer.min.css" type="text/css"/>
+      <script src="<?php echo $so['config']['theme_url'];?>/player/fluidplayer.min.js"></script>
+      <!-- <?php if ($so['loggedin'] == true && $so['page'] == 'home' && $so['config']['web_push'] == 1) { ?> -->
+      <link rel="manifest" href="<?php echo $so['config']['theme_url'];?>/javascript/OneSignalSDKFiles/manifest.json">
+      <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+      <script>
+        var push_user_id = '';
+        var my_id = '<?php echo $so['user']['web_device_id'] ?>';
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(["init", {
+          appId: "<?php echo $so['config']['web_push_id'] ?>",
+          autoRegister: true, /* Set to true to automatically prompt visitors */
+          notifyButton: {
+              enable: true /* Set to false to hide */
+          },
+          persistNotification: false,
+        }]);
+       OneSignal.push(function () {
+         OneSignal.getUserId(function(userId) {
+            push_user_id = userId;
+            if (userId != my_id) {
+              $.get("<?php echo $so['config']['site_url'].'/requests.php';?>", {f: 'update_user_device_id', id:push_user_id});
+            }
+          });
+         OneSignal.on('subscriptionChange', function (isSubscribed) {
+             if (isSubscribed == false) {
+                $.get("<?php echo $so['config']['site_url'].'/requests.php';?>", {f: 'remove_user_device_id'});
+             } else {
+                $.get("<?php echo $so['config']['site_url'].'/requests.php';?>", {f: 'update_user_device_id', id:push_user_id});
+             }
+         });
+       });
+      </script>
+      <?php } ?>
+      <style>
+      <?php echo $so['config']['styles_cc']; ?>
+      </style>
+
+      <script type="text/javascript">
+         <?php echo $so['config']['header_cc']; ?>
+         function so_Ajax_Requests_File(){
+            return "<?php echo $so['config']['site_url'].'/requests.php';?>"
+         }
+         <?php if ($so['config']['smooth_loading'] == 1 && $so['loggedin'] == true) { ?>
+         function so_Ajax_Requests_Filee(){
+            return "<?php echo $so['config']['site_url'].'/ajax_loading.php';?>"
+         }
+         
+         var websiteUrl = "<?php echo $so['config']['site_url'];?>";
+         $(function() {
+            <?php if ($so['loggedin'] == true && $so['config']['find_friends'] == 1) {?>
+              <?php if ($so['user']['last_location_update'] < time()): ?>
+                if (navigator.geolocation) {
+                  var location = navigator.geolocation.getCurrentPosition(so_UpdateLocation);
+                }
+              <?php endif; ?>
+            <?php } ?>
+           var box = $('#contnet');
+           var ISAPI = $('#ISAPI').val();
+           $(document).on('click', 'a[data-ajax]', function(e) {
+            so_CloseLightbox();
+              $('body').removeAttr('no-more-posts');
+              if ($('.postText').length) {
+                   if ($('.postText').val().length > 0) {
+                      if (!confirm("<?php echo html_entity_decode($so['lang']['havent_finished_post'], ENT_QUOTES)?>")) {
+                         return false;
+                      } else {
+                       $('.postText').val("");
+                      }
+                   }
+               }
+               so_StartBar();
+               window.post = 0;
+               var url = $(this).attr('data-ajax');
+               e.preventDefault();
+               if (!ISAPI) {
+                 if (url == '?index.php?link1=home') {
+                    $get_value = $('#json-data').val();
+                    if ($get_value) {
+                        $('#load-more-posts').hide();
+                        json_data = JSON.parse($('#json-data').val());
+                        if (json_data.page == 'home') {
+                            document.getElementById('posts').innerHTML = '<div class="posts_load"><div class="so_loading_post"><div class="so_loading_post_child"></div></div></div>';
+                            loadposts();
+                            window.history.pushState({state:'new'},'', websiteUrl);
+                            $("html, body").animate({ scrollTop: 0 }, 100);
+                            $('.user-details, .pac-container, .lightbox-container').remove();
+                            so_clearPRecording();
+                            so_CleanRecordNodes();
+                            so_stopRecording();
+                            so_StopLocalStream();
+                            
+                            return false;
+                        }
+                    }
+                 }
+                 $.post(so_Ajax_Requests_Filee() + url, {url:url}, function (data) {
+                     $('.user-details').remove();
+                     json_data = JSON.parse($(data).filter('#json-data').val());
+                     if (json_data.welcome_page == 1 || json_data.redirect == 1) {
+                         window.location.href = websiteUrl;
+                         return false;
+                     }
+                     if ($('.message-option-btns').length > 0) {
+                          if (json_data.url == 'index.php?index.php?link1=home') {
+                              window.location.href = websiteUrl;
+                          } else {
+                             window.location.href = json_data.url;
+                          }
+                          return false;
+                     }
+                     //document.getElementById('#contnet').innerHTML = data;
+                     box.html(data);
+                     if (json_data.is_css_file == 1) {
+                       $('.styled-profile').remove();
+                       $('footer').append(json_data.css_file);
+                       $('.extra-css').html(json_data.css_file_header);
+                     } else {
+                       $('.styled-profile').attr('href', '');
+                       $('.extra-css').empty();
+                     }
+                     so_clearPRecording();
+                     so_CleanRecordNodes();
+                     so_stopRecording();
+                     so_StopLocalStream();
+                     if (json_data.page == 'home') {
+                       $('.filterby li.filter-by-li').on('click', function (e) {
+                         $('.filterby li.filter-by-li').each(function(){
+                           $(this).removeClass('avtive');
+                           $(this).find('i').addClass('hidden');
+                         });
+                          $(this).find('i').removeClass('hidden');
+                          $(this).addClass('avtive');
+                        });
+                       window.history.pushState({state:'new'},'', websiteUrl);
+                       //window.history.pushState({}, "<?php echo $so['config']['site_url']?>", websiteUrl);
+                     } else {
+                       window.history.pushState({state:'new'},'', json_data.url);
+                       //window.history.pushState({}, "<?php echo $so['config']['site_url']?>", json_data.url);
+                     }
+                     $('.postText').autogrow({vertical: true, horizontal: false, height: 200});
+                      window.onpopstate = function(event) {
+                        $(window).unbind('popstate');
+                        window.location.href = document.location;
+                      };
+
+                     if (json_data.page == 'timeline' || json_data.page == 'page' || json_data.page == 'group') {
+                       $('.content-container').css('margin-top', '25px');
+                       $('.ad-placement-header-footer').find('.contnet').css('margin-top', '20px');
+                     } else {
+                       $('.content-container').css('margin-top', '45px');
+                       $('.ad-placement-header-footer').find('.contnet').css('margin-top', '0');
+                     }
+                     if (json_data.is_footer == 1 && $('.second-footer').css('display') == 'none') {
+                        $('footer .footer-wrapper').show();
+                     }
+                     else if(json_data.is_footer == 1 && $('.second-footer').css('display') != 'none'){
+
+                     } else {
+                      if ($(window).width() < 720) {
+                        $('footer .footer-wrapper').show();
+                      } else {
+                        $('footer .footer-wrapper, .second-footer').hide();
+                      }
+                     }
+                     document.title = decodeHtml(json_data.title);
+                     document_title = decodeHtml(json_data.title);
+                     $("html, body").animate({ scrollTop: 0 }, 150);
+                     so_FinishBar();
+                     $('#hidden-content').empty();
+                     $(document).ready(function() {$('div.leftcol').theiaStickySidebar({additionalMarginTop: 65});});
+                     $('#users-reacted-modal').modal("hide");
+                 });
+                 $('.user-details, .pac-container, .lightbox-container').remove();
+               }
+           });
+       }); 
+      <?php } ?>
+      </script>
+      <?php echo (!empty($so['config']['googleAnalytics'])) ? $so['config']['googleAnalytics'] : ''; ?>
+      
+    <?php echo So_LoadPage('style') ?>
+    
+    <?php if ($so['page'] == 'welcome') { ?>
+      <style>.login_left_combo{color:<?php echo $so['config']['btn_color'];?>}body{background: <?php echo $so['config']['btn_background_color'];?> !important;}   .so_regi_features:before{content: '';display: block;background-image: url(<?php echo $so['config']['theme_url'];?>/img/backgrounds/login.<?php echo $so['config']['background_extension'];?>);background-repeat: no-repeat;background-size: cover;background-position:center;position: absolute;top: 0;left: 0;right: 0;bottom: 0;opacity: 0.35;}
+    </style>
+      <?php }?>
+
+    <?php if (isset($_COOKIE['mode']) && $_COOKIE['mode'] == 'night') { ?>
+      <link rel="stylesheet" href="<?php echo $so['config']['theme_url'];?>/stylesheet/dark.css" id="night-mode-css">
+    <?php } ?>
+   </head>
+   
+   <body <?php if ($so['config']['chatSystem'] == 0) { ?> chat-off="true" <?php } ?>>
+    <div id="focus-overlay"></div>
+      <input type="hidden" class="seen_stories_users_ids" value="">
+      <input type="hidden" class="main_session" value="<?php echo so_CreateMainSession();?>">
+      <?php if($so['page'] != 'welcome' && $so['page'] != 'get_news_feed' && $so['page'] != 'maintenance' && $so['page'] != 'video-api'): ?>
+         <header class="header-container">
+            <?php echo So_LoadPage( 'header/content'); ?>
+         </header>
+      <?php endif; ?>
+      <?php
+      $container = 'container';
+      if ($so['page'] == 'welcome') {
+        $container = 'welcome-container';
+      } else if ($so['page'] == 'get_news_feed') {
+        $container = 'normal-container';
+      } else if ($so['page'] == 'messages') {
+        $container = 'so-msg-container';
+      }
+      ?>
+      <div class="content-container <?php echo $container?>" style="<?php echo ($so['page'] == 'timeline' || $so['page'] == 'page' || $so['page'] == 'group') ? 'margin-top:25px;' : '';?>">
+         <div class="ad-placement-header-footer">
+            <?php 
+               $header_ad = so_GetAd('header', false);
+               if($so['page'] != 'admin' && $so['page'] != 'welcome' && $so['page'] != 'messages' && !empty($header_ad) && $so['page'] != 'video-api') {
+                 $timeline_ads = ($so['page'] == 'timeline' || $so['page'] == 'page' || $so['page'] == 'group')  ? 'style="margin-top: 20px;"' : '';
+                 echo '<div class="contnet" ' . $timeline_ads . '>' . $header_ad . '</div>';
+               } 
+               ?>
+         </div>
+         <div id="contnet"><?php echo $so['content'];?></div> 
+         <?php 
+            $footer_ad = so_GetAd('footer', false);
+            if($so['page'] != 'admin' && $so['page'] != 'welcome' && $so['page'] != 'messages' && !empty($footer_ad)) {
+              echo '<div class="contnet">' . $footer_ad . '</div>';
+            } 
+            ?>
+         <footer>
+            <?php 
+              if ($so['page'] != 'welcome' && $so['page'] != 'register' && $so['page'] != 'get_news_feed' && $so['page'] != 'forum' && $so['page'] != 'messages') {
+                echo So_LoadPage('footer/content');
+              }
+             ?>
+         </footer>
+         <div class="second-footer">
+            <?php
+               if (in_array($so['page'], $so['footer_pages']) && $so['page'] != 'messages') {
+                  echo So_LoadPage('footer/content');
+               }
+            ?>
+         </div>
+         <div class="extra">
+            <?php 
+               if ($so['loggedin'] == true && $so['page'] != 'maintenance') {
+                 if ($so['config']['chatSystem'] == 1 && $so['page'] != 'get_news_feed' && $so['page'] != 'sharer' && $so['page'] != 'movies' && $so['page'] != 'video-api' && $so['page'] != 'messages') {
+                   echo So_LoadPage('chat/content');
+                 }
+                 echo So_LoadPage('modals/logged-out');
+                 ?>
+            <?php 
+               }
+               ?>
+         </div>
+      </div>
+      <!-- Load modal alerts -->
+    <?php echo So_LoadPage('modals/site-alerts'); ?>
+    <?php echo So_LoadPage('modals/language'); ?>
+    
+    <?php if (($so['page'] == 'home' || $so['page'] == 'timeline' || $so['page'] == 'products') && $so['config']['classified'] == 1) { ?>
+    <?php echo So_LoadPage('products/create'); ?>
+    <?php } ?>
+    
+    <?php if (($so['page'] == 'ads')) { ?>
+    <?php echo So_LoadPage('ads/send_money'); ?>
+    <?php } ?>
+    
+    <?php if ($so['loggedin'] == true) {?>
+    <div class="lb-preloader"><svg width='50px' height='50px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><circle cx="50" cy="50" r="40" stroke="#676d76" fill="none" stroke-width="6" stroke-linecap="round"><animate attributeName="stroke-dashoffset" dur="1.5s" repeatCount="indefinite" from="0" to="502"></animate><animate attributeName="stroke-dasharray" dur="1.5s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"></animate></circle></svg></div>
+    
+    <?php echo So_LoadPage('modals/keyboard-shortcuts'); ?>
+    <?php } ?>
+    
+      <!-- JS FILES -->
+      <?php if ($so['loggedin'] == false) { ?>
+      <?php if ($so['config']['reCaptcha'] == 1) { ?>
+      <script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
+      <?php } ?>
+      <script type="text/javascript" src="<?php echo $so['config']['theme_url'];?>/javascript/welcome.js<?php echo $so['update_cache']; ?>"></script>
+      <?php } ?>
+      <script type="text/javascript" src="<?php echo $so['config']['theme_url'];?>/javascript/script.js<?php echo $so['update_cache']; ?>"></script>
+      <?php if ($so['loggedin'] == true) {?>
+      <?php if ($so['config']['google_map'] == 1) { ?>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $so['config']['google_map_api'];?>&libraries=places"></script>
+      <?php } ?>
+      <script src="<?php echo $so['config']['theme_url'];?>/javascript/audioRecord/recorder.js"></script>
+      <script src="<?php echo $so['config']['theme_url'];?>/javascript/audioRecord/record.js"></script>
+      <?php } ?>
+      <?php if ($so['page'] == 'timeline' && $so['loggedin'] == true && $so['config']['css_upload'] == 1) { ?>
+      <?php if (!empty($so['user_profile']['css_file']) && file_exists($so['user_profile']['css_file'])) {?>
+      <link class="styled-profile" rel="stylesheet" href="<?php echo so_GetMedia($so['user_profile']['css_file']);?>">
+      <?php echo $so['css_file_header'];?>
+      <?php } } ?>
+      <div class="extra-css"></div>
+      <?php if ($so['page'] != 'welcome') { ?>
+      <script>$(document).ready(function() {$('div.leftcol').theiaStickySidebar({additionalMarginTop: 65});});</script>
+      <script type="text/javascript">jQuery(document).ready(function() {jQuery('.custom-fixed-element').theiaStickySidebar({additionalMarginTop: 65});});</script>
+      <?php }?>
+    
+      <!-- End 'JS FILES' -->
+      <?php echo So_LoadPage('timeago/content'); ?>
+      
+      <?php if($so['loggedin'] == true) { echo So_LoadPage('extra_js/content'); }?>
+      <!-- Audio FILES -->
+      <?php if ($so['loggedin'] == true) { ?>
+      <audio id="notification-sound" class="sound-controls" preload="auto">
+         <source src="<?php echo $so['config']['theme_url']; ?>/mp3/New-notification.mp3" type="audio/mpeg">
+      </audio>
+      <audio id="message-sound" class="sound-controls" preload="auto">
+         <source src="<?php echo $so['config']['theme_url']; ?>/mp3/New-message.mp3" type="audio/mpeg">
+      </audio>
+      <audio id="calling-sound" class="sound-controls" preload="auto">
+         <source src="<?php echo $so['config']['theme_url']; ?>/mp3/calling.mp3" type="audio/mpeg">
+      </audio>
+      <audio id="video-calling-sound" class="sound-controls" preload="auto">
+         <source src="<?php echo $so['config']['theme_url']; ?>/mp3/video_call.mp3" type="audio/mpeg">
+      </audio>
+      <?php } ?>
+      
+      <!-- End 'Audio FILES' -->
+      <script>
+        $(window).on("popstate", function (e) {
+          location.reload();
+      });
+       /*Language Select*/
+        $(document).ready(function(){
+          $("#so_language_modal .language_select .English").append('<span class="language_initial"><img src="<?php echo $so['config']['theme_url']; ?>/img/flags/united-states.svg"/></span> ');
+          $("#so_language_modal .language_select .Arabic").append('<span class="language_initial"><img src="<?php echo $so['config']['theme_url']; ?>/img/flags/saudi-arabia.svg"/></span> ');
+          $("#so_language_modal .language_select .Dutch").append('<span class="language_initial"><img src="<?php echo $so['config']['theme_url']; ?>/img/flags/netherlands.svg"/></span> ');
+          $("#so_language_modal .language_select .French").append('<span class="language_initial"><img src="<?php echo $so['config']['theme_url']; ?>/img/flags/france.svg"/></span> ');
+          $("#so_language_modal .language_select .German").append('<span class="language_initial"><img src="<?php echo $so['config']['theme_url']; ?>/img/flags/germany.svg"/></span> ');
+          $("#so_language_modal .language_select .Hungarian, #so_language_modal .language_select .Magyar").append('<span class="language_initial"><img src="<?php echo $so['config']['theme_url']; ?>/img/flags/hungary.svg"/></span> ');
+          $("#so_language_modal .language_select .Italian").append('<span class="language_initial"><img src="<?php echo $so['config']['theme_url']; ?>/img/flags/italy.svg"/></span> ');
+          $("#so_language_modal .language_select .Portuguese").append('<span class="language_initial"><img src="<?php echo $so['config']['theme_url']; ?>/img/flags/portugal.svg"/></span> ');
+          $("#so_language_modal .language_select .Russian").append('<span class="language_initial"><img src="<?php echo $so['config']['theme_url']; ?>/img/flags/russia.svg"/></span> ');
+          $("#so_language_modal .language_select .Spanish").append('<span class="language_initial"><img src="<?php echo $so['config']['theme_url']; ?>/img/flags/spain.svg"/></span> ');
+          $("#so_language_modal .language_select .Serbian").append('<span class="language_initial"><img src="<?php echo $so['config']['theme_url']; ?>/img/flags/serbia.svg"/></span> ');
+          $("#so_language_modal .language_select .Turkish").append('<span class="language_initial"><img src="<?php echo $so['config']['theme_url']; ?>/img/flags/turkey.svg"/></span> ');
+        });
+        <?php echo $so['config']['footer_cc']; ?>
+      </script>
+      <?php if ($so['page'] != 'get_news_feed') { ?>
+      <script>
+      window.addEventListener("load", function(){
+      window.cookieconsent.initialise({
+        "palette": {
+          "popup": {
+            "background": "<?php echo $so['config']['header_background'];?>",
+            "text": "#fff"
+          },
+          "button": {
+            "background": "<?php echo $so['config']['btn_background_color'];?>"
+          }
+        },
+        "theme": "edgeless",
+        <?php if ($so['page'] == 'welcome') {?> "position": "bottom-left", <?php } ?>
+        "content": {
+          "message": "<?php echo $so['lang']['cookie_message']?>",
+          "dismiss": "<?php echo $so['lang']['cookie_dismiss']?>",
+          "link": "<?php echo $so['lang']['cookie_link']?>",
+          "href": "<?php echo so_SeoLink('index.php?link1=terms&type=privacy-policy');?>"
+        }
+      })});
+      </script>
+      <?php } ?>
+      <?php if ($so['page'] == 'welcome') {?>
+    <style>.cc-bottom{bottom: 2.5em;}</style>
+      <?php } ?>
+	  
+		<?php if ($so['config']['user_status'] == 1) { ?>
+      <!-- // NEW STORY -->
+      <script type="text/javascript">
+          $(document).on('click', '.story-image-wrapper', function(event) {
+          event.preventDefault();
+          $('#contnet').append('<div class="lightbox-container"><div class="lightbox-backgrond" onclick="so_CloseLightbox();"></div><div class="lb-preloader" style="display:block"><svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><circle cx="50" cy="50" r="40" stroke="#676d76" fill="none" stroke-width="6" stroke-linecap="round"><animate attributeName="stroke-dashoffset" dur="1.5s" repeatCount="indefinite" from="0" to="502"></animate><animate attributeName="stroke-dasharray" dur="1.5s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"></animate></circle></svg></div></div>');
+
+          $value = $(this).parents(".story-container").attr('data-status-id');
+          $.post(so_Ajax_Requests_File() + '?f=story_view', {id: $value}, function(data, textStatus, xhr) {
+            if (data.status == 200) {
+              document.body.style.overflow = 'hidden';
+                $('.lightbox-container').html(data.html);
+                $('.width_').addClass('load');
+                setTimeout(function(){
+                    $('.width_').css('width', '100%');
+              }, 200);
+                so_Delay(function(){
+                    if ($('.dont_close_story_'+$value).length == 0) {
+                      Get_NextStory(data.story_id);
+                    }
+              }, 10000);
+            }
+            else{
+              so_CloseLightbox();
+            }
+          });
+        });
+
+        function so_GetMoreStoryViews(story_id,self) {
+          last_view = $('.story_views_').last().attr('id');
+          $(self).addClass('dont_close_story_'+story_id);
+          $(self).find('span').html('<?php echo $so["lang"]["please_wait"]?>');
+          $.post(so_Ajax_Requests_File() + '?f=story_views_', {last_view:last_view,story_id:story_id}, function(data, textStatus, xhr) {
+            if (data.status == 200) {
+              $(self).find('button').html('<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather"><polyline points="6 9 12 15 18 9"></polyline></svg> <?php echo($so['lang']['load_more']) ?>');
+              
+              $('.views_container_').append(data.html);
+            }
+            else{
+              $(self).find('button').html('<?php echo $so["lang"]["no_more_views"]?>');
+
+            }
+          });
+        }
+        $(document).on('click', '.see_all_stories', function(event) {
+          event.preventDefault();
+          $('#contnet').append('<div class="lightbox-container"><div class="lightbox-backgrond" onclick="so_CloseLightbox();"></div><div class="lb-preloader" style="display:block"><svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><circle cx="50" cy="50" r="40" stroke="#676d76" fill="none" stroke-width="6" stroke-linecap="round"><animate attributeName="stroke-dashoffset" dur="1.5s" repeatCount="indefinite" from="0" to="502"></animate><animate attributeName="stroke-dasharray" dur="1.5s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"></animate></circle></svg></div></div>');
+          user_id = $(this).attr('data_story_user_id');
+          type = $(this).attr('data_story_type');
+          $.post(so_Ajax_Requests_File() + '?f=view_all_stories', {user_id: user_id,type:type}, function(data, textStatus, xhr) {
+            document.body.style.overflow = 'hidden';
+            $('.lightbox-container').html(data.html);
+            setTimeout(function(){
+              video_story = $('#video_story').attr('data-story-video');
+                if ($('[data-story-video='+video_story+']').length == 0) {
+
+                  $('.width_').addClass('load');
+                  setTimeout(function(){
+                      $('.width_').css('width', '100%');
+                  }, 200);
+                  so_Delay(function(){
+                    value = $('.user_story_').attr('id');
+
+                      if ($('.dont_close_story_'+value).length == 0) {
+                        if (type == 'user') {
+                          Get_NextStory(data.story_id);
+                        }
+                        else{
+                          
+                          Get_NextStory(data.story_id,'friends');
+                        }
+                      }
+                  }, 10000);
+                }
+              }, 200);
+          });
+        });
+        function Get_PreviousStory(story_id,story_type = '') {
+          if ($('.lightbox-container').is(":visible")) {
+            
+            so_CloseLightbox();
+            $('#contnet').append('<div class="lightbox-container"><div class="lightbox-backgrond" onclick="so_CloseLightbox();"></div><div class="lb-preloader" style="display:block"><svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><circle cx="50" cy="50" r="40" stroke="#676d76" fill="none" stroke-width="6" stroke-linecap="round"><animate attributeName="stroke-dashoffset" dur="1.5s" repeatCount="indefinite" from="0" to="502"></animate><animate attributeName="stroke-dasharray" dur="1.5s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"></animate></circle></svg></div></div>');
+            $.post(so_Ajax_Requests_File() + '?f=view_story_by_id', {story_id: story_id,type:'previous',story_type:story_type}, function(data, textStatus, xhr) {
+              if (data.status == 200) {
+                document.body.style.overflow = 'hidden';
+                  $('.lightbox-container').html(data.html);
+                  video_story = $('#video_story').attr('data-story-video');
+                if ($('[data-story-video='+video_story+']').length == 0) {
+                    $('.width_').addClass('load');
+                    setTimeout(function(){
+                        $('.width_').css('width', '100%');
+                  }, 200);
+                    so_Delay(function(){
+                      value = $('.user_story_').attr('id');
+                        if ($('.dont_close_story_'+value).length == 0) {
+                          if (story_type == 'user') {
+                            if ($('.lightpost-'+data.story_id).length > 0) {
+                              Get_NextStory(data.story_id);
+                            }
+                          }
+                          else{
+                            if ($('.lightpost-'+data.story_id).length > 0) {
+                              Get_NextStory(data.story_id,'friends');
+                            }
+                          }
+                        }
+                  }, 10000);
+                }
+              }
+              else{
+                so_CloseLightbox();
+              }
+            });
+          }
+        }
+        function Get_NextStory(story_id,story_type = '') {
+          if ($('.lightbox-container').is(":visible")) {
+            
+            so_CloseLightbox();
+            $('#contnet').append('<div class="lightbox-container"><div class="lightbox-backgrond" onclick="so_CloseLightbox();"></div><div class="lb-preloader" style="display:block"><svg width="50px" height="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><circle cx="50" cy="50" r="40" stroke="#676d76" fill="none" stroke-width="6" stroke-linecap="round"><animate attributeName="stroke-dashoffset" dur="1.5s" repeatCount="indefinite" from="0" to="502"></animate><animate attributeName="stroke-dasharray" dur="1.5s" repeatCount="indefinite" values="150.6 100.4;1 250;150.6 100.4"></animate></circle></svg></div></div>');
+            $.post(so_Ajax_Requests_File() + '?f=view_story_by_id', {story_id: story_id,type:'next',story_type:story_type}, function(data, textStatus, xhr) {
+              if (data.status == 200) {
+                document.body.style.overflow = 'hidden';
+                  $('.lightbox-container').html(data.html);
+                  video_story = $('#video_story').attr('data-story-video');
+                if ($('[data-story-video='+video_story+']').length == 0) {
+                    $('.width_').addClass('load');
+                    setTimeout(function(){
+                        $('.width_').css('width', '100%');
+                  }, 200);
+                    so_Delay(function(){
+                      value = $('.user_story_').attr('id');
+                        if ($('.dont_close_story_'+value).length == 0) {
+                          if (story_type == 'user') {
+                            if ($('.lightpost-'+data.story_id).length > 0) {
+                              Get_NextStory(data.story_id);
+                            }
+                      }
+                      else{
+                        if ($('.lightpost-'+data.story_id).length > 0) {
+                          Get_NextStory(data.story_id,'friends');
+                        }
+                      }
+                        }
+                  }, 10000);
+                }
+              }
+              else{
+                if (story_type == 'user') {
+                  if($('.unseen_story').length > 0){
+                    $('.unseen_story').addClass('seen_story');
+                    $('.unseen_story').removeClass('unseen_story');
+
+                  }
+                }
+                so_CloseLightbox();
+              }
+            });
+          }
+      }
+    </script>
+      <!-- // NEW STORY -->
+	  
+	  <?php } ?>

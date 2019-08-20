@@ -1,0 +1,100 @@
+<?php 
+    echo So_LoadPage('welcome/welcome-header');
+?>
+<div class="wrapper">
+	<div class="typing-element"></div>
+	<div class="login fadeInUp animated animated_5">
+		<div class="login_left_combo_parent">
+			<div class="carousel slide carousel-fade" data-ride="carousel">
+				<div class="carousel-inner" role="listbox">
+					<div class="item active" style="background-image: url(<?php echo $so['config']['theme_url'];?>/img/backgrounds/login.<?php echo $so['config']['background_extension'];?>)"></div>
+					<div class="item" style="background-image: url(<?php echo $so['config']['theme_url'];?>/img/backgrounds/login2.<?php echo $so['config']['background_extension'];?>)"></div>
+					<div class="item" style="background-image: url(<?php echo $so['config']['theme_url'];?>/img/backgrounds/login3.<?php echo $so['config']['background_extension'];?>)"></div>
+				</div>
+			</div>
+			<div class="login_left_combo">
+				<div class="fadeInUp animated animated_9">
+					<h1><?php echo $so['lang']['welcome']?></h1>
+					<p><?php echo $so['lang']['welcome_share_text']?></p>
+					<?php if ($so['config']['facebook_login'] != 0 ||
+								$so['config']['google_login'] != 0 
+							) { ?>
+					<div class="social_btns">
+						<p><?php echo $so['lang']['login_with']?> <?php echo $so['lang']['social_links']?>:</p>
+						<?php if($so['config']['facebook_login'] != 0): ?>
+							<a href="<?php echo $so['facebook_login']?>" class="btn btn-facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M17,2V2H17V6H15C14.31,6 14,6.81 14,7.5V10H14L17,10V14H14V22H10V14H7V10H10V6A4,4 0 0,1 14,2H17Z"></path></svg></a>
+						<?php endif; ?>
+						<?php if($so['config']['google_login'] != 0): ?>
+							<a href="<?php echo $so['google_login']?>" class="btn btn-google"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M23,11H21V9H19V11H17V13H19V15H21V13H23M8,11V13.4H12C11.8,14.4 10.8,16.4 8,16.4C5.6,16.4 3.7,14.4 3.7,12C3.7,9.6 5.6,7.6 8,7.6C9.4,7.6 10.3,8.2 10.8,8.7L12.7,6.9C11.5,5.7 9.9,5 8,5C4.1,5 1,8.1 1,12C1,15.9 4.1,19 8,19C12,19 14.7,16.2 14.7,12.2C14.7,11.7 14.7,11.4 14.6,11H8Z"></path></svg></a>
+						<?php endif; ?>
+					</div>
+				    <?php } ?>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<form id="login" class="fadeInUp animated animated_9" method="post">
+				<p class="title"><?php echo $so['lang']['login']?></p>
+				<div class="errors"></div>
+				<input name="username" type="text" placeholder="<?php echo $so['lang']['username']?>" autofocus/>
+				<input name="passsord" type="passsord" placeholder="<?php echo $so['lang']['passsord']?>" />
+				<div class="forgot_passsord">
+					<a href="index.php?link1=forget-password"><?php echo $so['lang']['forget_password']?></a>
+				</div>
+				<div class="login_signup_combo">
+					<div class="signup__">
+						<?php if ($so['config']['user_registration'] == 1): ?>
+						<a class="dec" href="index.php?link1=register"><?php echo $so['lang']['register']?></a>
+						<?php endif ?>
+					</div>
+					<div class="login__">
+						<svg class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="spinner__path" fill="none" stroke-width="7" stroke-linecap="round" cx="33" cy="33" r="29"></circle></svg>
+						<button type="submit" class="btn btn-main"><?php echo $so['lang']['login']?></button>
+					</div>
+				</div>
+				<?php if(!empty( $_GET['last_url'])){?>
+					<div class="form-group"><input type="hidden" name="last_url" value="<?php echo urldecode(so_Secure($_GET['last_url']));?>"></div>
+				<?php } ?>
+				<div class="random_users">
+					<?php if ($so['config']['profile_privacy'] == 1) { ?>
+						<hr>
+						<?php echo so_LoadPage('welcome/welcome-users-profiles');?>
+					<?php } ?>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="container"><?php echo so_LoadPage('footer/welcome');?></div>
+
+<script>
+var sorking = false;
+var $this = $('#login');
+var $state = $this.find('.errors');
+$(function() {
+  $('#login').ajaxForm({
+    url: so_Ajax_Requests_File() + '?f=login',
+    beforeSend: function() {
+		sorking = true;
+		$this.find('button').attr("disabled", true);
+		$this.find('.spinner').addClass("show");
+    },
+    success: function(data) {
+      if (data.status == 200 || data.status == 600) {
+      	$state.addClass('success');
+        $state.html('<?php echo $so['lang']['welcome_back'] ?>');
+		$this.find('.spinner').removeClass("show");
+        setTimeout(function () {
+        	window.location.href = data.location;
+        }, 1000);
+      } else {
+        var errors = data.errors.join("<br>");
+		$this.find('button').attr("disabled", false);
+		$this.find('.spinner').removeClass("show");
+        $state.html(errors);
+      } 
+      sorking = false;
+    }
+  });
+});
+</script>
